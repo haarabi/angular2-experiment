@@ -1,1 +1,1 @@
-# SynerMedHome
+# SynerMed Home
