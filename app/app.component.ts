@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
     // This specifies a simple CSS selector for an HTML element to represent the component
     selector: 'my-app',
     // This tells Angular how to render this component.
-    template: '<h1>My First Angular 2 App</h1>'
+    template: '<h1>SynerMed Home</h1>'
 })
 
 // "Component class" controlling the appearance and behavior of view via its template. This is

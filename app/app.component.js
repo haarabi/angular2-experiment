@@ -27,7 +27,7 @@ var AppComponent = (function () {
             // This specifies a simple CSS selector for an HTML element to represent the component
             selector: 'my-app',
             // This tells Angular how to render this component.
-            template: '<h1>My First Angular 2 App</h1>'
+            template: '<h1>SynerMed Home</h1>'
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
