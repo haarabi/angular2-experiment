@@ -17,4 +17,3 @@ matrix:
   - env: "MODE=browserstack_optional"
 install:
   - npm install
-  - npm run typings
