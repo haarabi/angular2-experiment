@@ -1,6 +1,6 @@
 {
   "name": "synermed-home",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server",
@@ -8,6 +8,10 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings"
+  },
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/haarabi/synermed-home.git"
   },
   "license": "ISC",
   "dependencies": {
