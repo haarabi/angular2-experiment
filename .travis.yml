@@ -4,18 +4,8 @@ node_js:
   - "node"
 os:
   - linux
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - libstdc++6
 branches:
   only:
   - master
-matrix:
-  allow_failures:
-  - env: "MODE=saucelabs_optional"
-  - env: "MODE=browserstack_optional"
 install:
   - npm install
