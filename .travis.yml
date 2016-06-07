@@ -3,6 +3,7 @@ node_js:
   - "5"
 before_install:
   - npm install -g gulp
+  - npm run typings install dt~es6-shim --save --global
 before_script:
   - sh -e /etc/init.d/xvfb start
 install:
