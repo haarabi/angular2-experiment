@@ -1,13 +1,14 @@
 language: node_js
+sudo: false
 node_js:
-  - "5"
+  - '5.4.1'
 before_install:
   - npm install -g gulp
   - npm run typings install dt~es6-shim --save --global
-before_script:
-  - sh -e /etc/init.d/xvfb start
+
 install:
-  - npm install
-  - gulp add-example-boilerplate
+  - ./scripts/ci-lite/install.sh
 script:
-  - gulp
+  - ./scripts/ci-lite/build.sh && ./scripts/ci-lite/test.sh
+after_script:
+  - ./scripts/ci-lite/cleanup.sh
