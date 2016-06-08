@@ -1,17 +1,10 @@
+dist: trusty
+sudo: required
 language: node_js
-sudo: false
 node_js:
-  - '5.4.1'
-addons:
-  apt:
-    sources:
-      # needed to install g++ that is used by npms's native modules
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.8
-install:
-  - ./scripts/ci-lite/install.sh
-script:
-  - ./scripts/ci-lite/build.sh && ./scripts/ci-lite/test.sh
-after_script:
-  - ./scripts/ci-lite/cleanup.sh
+  - '6.2.0'
+cache:
+  directories:
+     - ./node_modules
+before_script:
+  - typings install   
