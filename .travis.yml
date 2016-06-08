@@ -1,8 +1,7 @@
-dist: trusty
-sudo: required
 language: node_js
 node_js:
   - "5"
+<<<<<<< HEAD
 os:
   - linux
 branches:
@@ -14,12 +13,15 @@ env:
     - CHROME_BIN=chromium-browser
   matrix:
     - SCRIPT="run-e2e-tests --fast"
+=======
+>>>>>>> dc4970e97e53e6146a77722ec73363086c3776ba
 before_install:
-  - npm install -g gulp --no-optional
+  - npm install -g gulp
+  - npm run typings install dt~es6-shim --save --global
 before_script:
   - sh -e /etc/init.d/xvfb start
 install:
-  - npm install --no-optional
+  - npm install
   - gulp add-example-boilerplate
 script:
-  - gulp $SCRIPT
+  - gulp
