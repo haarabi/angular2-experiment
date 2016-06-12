@@ -43,7 +43,7 @@ coverage:
 
     gitter:
       default:
-        url: null
+        url: https://gitter.im/haarabi/synermed-home
         threshold: null
         branches: null
         message: null
