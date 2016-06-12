@@ -4,7 +4,7 @@
 [![Dependency Status](https://david-dm.org/haarabi/synermed-home.svg)](https://david-dm.org/haarabi/synermed-home)
 [![devDependency Status](https://david-dm.org/haarabi/synermed-home/dev-status.svg)](https://david-dm.org/haarabi/synermed-home#info=devDependencies)
 
-##The goal of SynerMed Home
+##Vision
 Our goal for this application is to experiment porting our organization's application which is written in .NET Framework, 
 using MongoDB, ExpressJS, Angular 2, NodeJS. The UI design will use Angular 2 Materials.
 
