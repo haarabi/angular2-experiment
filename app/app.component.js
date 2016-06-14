@@ -16,18 +16,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // Best practice: to create component per purpose/functionality
 // Here we are importing the Component decorator function.
 var core_1 = require('@angular/core');
+var Hero = (function () {
+    function Hero() {
+    }
+    return Hero;
+}());
+exports.Hero = Hero;
 // "Decorator" telling Angular what template to use and how to create the component.
 // The @Component decorator function takes in a metadata object, that tells angular how to create
 //  and use this component.
 var AppComponent = (function () {
     function AppComponent() {
+        this.title = 'Providers';
+        this.hero = {
+            id: 1,
+            name: 'Dr. Frank'
+        };
     }
     AppComponent = __decorate([
         core_1.Component({
             // This specifies a simple CSS selector for an HTML element to represent the component
             selector: 'my-app',
-            // This tells Angular how to render this component.
-            template: '<h1>SynerMed Home</h1>'
+            // This tells Angular how to render this component. 
+            // double curly braces {{}} is called "interpolation" - this is one-way binding
+            // ngModel is a build directive that allows two-way binding. It also propagates changes to
+            //  every other binding of the hero.name.
+            template: "\n        <h1>{{title}}</h1>\n        <h2>{{hero.name}} details!</h2>\n        <div>\n            <label>id: </label>{{hero.id}}\n        </div>\n        <div>\n            <label>name: </label>\n            <input [(ngModel)]=\"hero.name\" placeholder=\"name\">\n        </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
