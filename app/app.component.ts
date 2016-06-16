@@ -6,11 +6,8 @@
 // Best practice: to create component per purpose/functionality
 // Here we are importing the Component decorator function.
 import { Component } from '@angular/core';
-
-export class Provider {
-  id: number;
-  name: string;
-}
+import { Provider } from './provider';
+import { ProviderDetailComponent } from './providerdetail.component';
 
 // "Decorator" telling Angular what template to use and how to create the component.
 // The @Component decorator function takes in a metadata object, that tells angular how to create
@@ -35,14 +32,7 @@ export class Provider {
                 <span class="badge">{{provider.id}}</span> {{provider.name}}
             </li>
         </ul>
-        <div *ngIf="selectedProvider">
-            <h2>{{selectedProvider.name}} details!</h2>
-            <div><label>id: </label>{{selectedProvider.id}}</div>
-            <div>
-                <label>name: </label>
-                <input [(ngModel)]="selectedProvider.name" placeholder="name"/>
-            </div>
-        </div>
+        <providerdetail [provider]="selectedProvider"></providerdetail>
     `,
     // the style applied in the decorator is only specific to this component. The outer HTML is not
     //  affected.
@@ -94,7 +84,8 @@ export class Provider {
         margin-right: .8em;
         border-radius: 4px 0 0 4px;
     }
-    `]
+    `],
+    directives: [ProviderDetailComponent]
 })
 
 // "Component class" controlling the appearance and behavior of view via its template. This is
