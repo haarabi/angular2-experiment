@@ -7,5 +7,5 @@
 
 ##Vision
 Our goal for this application is to experiment porting our organization's application which is written in .NET Framework, 
-using MongoDB, ExpressJS, Angular 2, NodeJS. The UI design will use Angular 2 Materials.
+using JavaScript, NodeJS, and NoSQL.
 
