@@ -14,7 +14,7 @@ import { ProviderDetailComponent } from './providerdetail.component';
 //  and use this component.
 @Component({
     // This specifies a simple CSS selector for an HTML element to represent the component
-    selector: 'my-app',
+    selector: 'app',
     // This tells Angular how to render this component. 
     // double curly braces {{}} is called "interpolation" - this is one-way binding
     // ngModel is a build directive that allows two-way binding. It also propagates changes to
