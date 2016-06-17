@@ -24,7 +24,7 @@ var ProviderService = (function () {
     // Experimenting with getting data on a slow connection
     ProviderService.prototype.getProvidersSlowly = function () {
         return new Promise(function (resolve) {
-            return setTimeout(function () { return resolve(mockproviders_1.PROVIDERS); }, 2000);
+            return setTimeout(function () { return resolve(mockproviders_1.PROVIDERS); }, 10000);
         } // 2 seconds
          // 2 seconds
         );

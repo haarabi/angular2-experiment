@@ -16,7 +16,7 @@ export class ProviderService {
     // Experimenting with getting data on a slow connection
     getProvidersSlowly() {
         return new Promise<Provider[]>(resolve =>
-        setTimeout(() => resolve(PROVIDERS), 2000) // 2 seconds
+        setTimeout(() => resolve(PROVIDERS), 10000) // 2 seconds
         );
     }
 }
