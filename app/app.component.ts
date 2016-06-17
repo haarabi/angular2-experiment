@@ -5,8 +5,9 @@
 // The component file hosts the client UX
 // Best practice: to create component per purpose/functionality
 // Here we are importing the Component decorator function.
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Provider } from './provider';
+import { ProviderService } from './provider.service';
 import { ProviderDetailComponent } from './providerdetail.component';
 
 // "Decorator" telling Angular what template to use and how to create the component.
@@ -85,35 +86,55 @@ import { ProviderDetailComponent } from './providerdetail.component';
         border-radius: 4px 0 0 4px;
     }
     `],
-    directives: [ProviderDetailComponent]
+    directives: [ProviderDetailComponent],
+    providers: [ProviderService]
 })
 
 // "Component class" controlling the appearance and behavior of view via its template. This is
 //  where the application logic is written.
 // This component is exported so that we can import it elsewhere in the application.
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = 'Provider Search';
-    
-    // We don't need to define the providers type, TS can infer it from the PROVIDERS aaray.
-    providers = PROVIDERS;    
+    providers: Provider[];
     selectedProvider: Provider;
     
+    // keep complex logic out of the constructor. Use cstr for simple initializations.
+    constructor(private providerService: ProviderService) {
+
+    }
+
+    // The arrow function (=>) is new in ES2015 used in callbacks.
+    // The callback below sets the component's providers property to the array of providers
+    //  returned by the service.
+    getProviders() {
+        this.providerService
+                .getProviders()
+                .then(providers => this.providers = providers);
+    }
+
+    // Angular Lifecycle Hooks used to get providers
+    ngOnInit(){
+        this.getProviders();
+    }
+
     onSelect(provider: Provider) { 
         this.selectedProvider = provider; 
     }
  }
 
- var PROVIDERS: Provider[] = [
-     { "id": 11, "name": "Dr. John" },
-     { "id": 12, "name": "Dr. Smith" },
-     { "id": 13, "name": "Dr. Dan" },
-     { "id": 14, "name": "Dr. Robert" },
-     { "id": 15, "name": "Dr. Jack" },
-     { "id": 16, "name": "Dr. Alan" },
-     { "id": 17, "name": "Dr. Mike" },
-     { "id": 18, "name": "Dr. Joe" },
-     { "id": 19, "name": "Dr. Philip" },
-     { "id": 20, "name": "Dr. Sam" }
- ];
+/*
+Note:
+* Reasons why we should not use the new ProviderSerivce() or force the code to use the service
+   inteface (therefore we use service injection):
+1. Our component has to know how to create a ProviderService. If we ever change the ProviderService
+constructor, we'll have to find every place we create the service and fix it. Running around
+patching code is error prone and adds to the test burden.
 
+2. We create a new service each time we use new. What if the service should cache providers and share
+that cache with others? We couldn't do that.
 
+3. We're locking the AppComponent into a specific implementation of the ProviderService. It will be
+hard to switch implementations for different scenarios. Can we operate offline? Will we need
+different mocked versions under test? Not easy. 
+*/
+ 

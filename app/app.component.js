@@ -16,16 +16,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // Best practice: to create component per purpose/functionality
 // Here we are importing the Component decorator function.
 var core_1 = require('@angular/core');
+var provider_service_1 = require('./provider.service');
 var providerdetail_component_1 = require('./providerdetail.component');
 // "Decorator" telling Angular what template to use and how to create the component.
 // The @Component decorator function takes in a metadata object, that tells angular how to create
 //  and use this component.
 var AppComponent = (function () {
-    function AppComponent() {
+    // keep complex logic out of the constructor. Use cstr for simple initializations.
+    function AppComponent(providerService) {
+        this.providerService = providerService;
         this.title = 'Provider Search';
-        // We don't need to define the providers type, TS can infer it from the PROVIDERS aaray.
-        this.providers = PROVIDERS;
     }
+    // The arrow function (=>) is new in ES2015 used in callbacks.
+    // The callback below sets the component's providers property to the array of providers
+    //  returned by the service.
+    AppComponent.prototype.getProviders = function () {
+        var _this = this;
+        this.providerService
+            .getProviders()
+            .then(function (providers) { return _this.providers = providers; });
+    };
+    // Angular Lifecycle Hooks used to get providers
+    AppComponent.prototype.ngOnInit = function () {
+        this.getProviders();
+    };
     AppComponent.prototype.onSelect = function (provider) {
         this.selectedProvider = provider;
     };
@@ -44,23 +58,27 @@ var AppComponent = (function () {
             // the style applied in the decorator is only specific to this component. The outer HTML is not
             //  affected.
             styles: ["\n    .selected {\n        background-color: #CFD8DC !important;\n        color: white;\n    }\n    .providers {\n        margin: 0 0 2em 0;\n        list-style-type: none;\n        padding: 0;\n        width: 15em;\n    }\n    .providers li {\n        cursor: pointer;\n        position: relative;\n        left: 0;\n        background-color: #EEE;\n        margin: .5em;\n        padding: .3em 0;\n        height: 1.6em;\n        border-radius: 4px;\n    }\n    .providers li.selected:hover {\n        background-color: #BBD8DC !important;\n        color: white;\n    }\n    .providers li:hover {\n        color: #607D8B;\n        background-color: #DDD;\n        left: .1em;\n    }\n    .providers .text {\n        position: relative;\n        top: -3px;\n    }\n    .providers .badge {\n        display: inline-block;\n        font-size: small;\n        color: white;\n        padding: 0.8em 0.7em 0 0.7em;\n        background-color: #607D8B;\n        line-height: 1em;\n        position: relative;\n        left: -1px;\n        top: -4px;\n        height: 1.8em;\n        margin-right: .8em;\n        border-radius: 4px 0 0 4px;\n    }\n    "],
-            directives: [providerdetail_component_1.ProviderDetailComponent]
+            directives: [providerdetail_component_1.ProviderDetailComponent],
+            providers: [provider_service_1.ProviderService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [provider_service_1.ProviderService])
     ], AppComponent);
     return AppComponent;
 }());
 exports.AppComponent = AppComponent;
-var PROVIDERS = [
-    { "id": 11, "name": "Dr. John" },
-    { "id": 12, "name": "Dr. Smith" },
-    { "id": 13, "name": "Dr. Dan" },
-    { "id": 14, "name": "Dr. Robert" },
-    { "id": 15, "name": "Dr. Jack" },
-    { "id": 16, "name": "Dr. Alan" },
-    { "id": 17, "name": "Dr. Mike" },
-    { "id": 18, "name": "Dr. Joe" },
-    { "id": 19, "name": "Dr. Philip" },
-    { "id": 20, "name": "Dr. Sam" }
-];
+/*
+Note:
+* Reasons why we should not use the new ProviderSerivce() or force the code to use the service
+   inteface (therefore we use service injection):
+1. Our component has to know how to create a ProviderService. If we ever change the ProviderService
+constructor, we'll have to find every place we create the service and fix it. Running around
+patching code is error prone and adds to the test burden.
+
+2. We create a new service each time we use new. What if the service should cache providers and share
+that cache with others? We couldn't do that.
+
+3. We're locking the AppComponent into a specific implementation of the ProviderService. It will be
+hard to switch implementations for different scenarios. Can we operate offline? Will we need
+different mocked versions under test? Not easy.
+*/
 //# sourceMappingURL=app.component.js.map
