@@ -21,6 +21,14 @@ var ProviderService = (function () {
         // Using promises so that we can ask for the data asynchronously.
         return Promise.resolve(mockproviders_1.PROVIDERS);
     };
+    // Experimenting with getting data on a slow connection
+    ProviderService.prototype.getProvidersSlowly = function () {
+        return new Promise(function (resolve) {
+            return setTimeout(function () { return resolve(mockproviders_1.PROVIDERS); }, 2000);
+        } // 2 seconds
+         // 2 seconds
+        );
+    };
     ProviderService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])

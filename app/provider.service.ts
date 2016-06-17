@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Provider } from './provider';
 import { PROVIDERS } from './mockproviders';
 
 // TS see the Injectable decorator and emits metadata about our service, metadata that Angular may
@@ -10,5 +11,12 @@ export class ProviderService {
     getProviders(){
         // Using promises so that we can ask for the data asynchronously.
         return Promise.resolve(PROVIDERS);
+    }
+
+    // Experimenting with getting data on a slow connection
+    getProvidersSlowly() {
+        return new Promise<Provider[]>(resolve =>
+        setTimeout(() => resolve(PROVIDERS), 2000) // 2 seconds
+        );
     }
 }
