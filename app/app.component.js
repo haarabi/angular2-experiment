@@ -9,8 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_deprecated_1 = require('@angular/router-deprecated');
+var router_1 = require('@angular/router');
 var provider_service_1 = require('./provider.service');
+//import { ProviderComponent } from './provider.component';
+//import { DashboardComponent } from './dashboard.component';
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Provider Search';
@@ -18,24 +20,14 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
-            template: "\n        <h1>{{title}}</h1>\n        <a [routerLink]=\"['Providers']\">Providers</a>\n        <router-outlet></router-outlet>\n    ",
-            directives: [router_deprecated_1.ROUTER_DIRECTIVES],
+            template: "\n        <h1>{{title}}</h1>\n        <nav>\n            <a [routerLink]=\"['/dashboard']\">Dashboard</a>\n            <a [routerLink]=\"['/dashboard2']\">Dashboard 2</a>\n            <a [routerLink]=\"['/providers']\">Providers</a>\n        </nav>\n        <router-outlet></router-outlet>\n    ",
+            directives: [
+                router_1.ROUTER_DIRECTIVES
+            ],
             providers: [
-                router_deprecated_1.ROUTER_PROVIDERS,
                 provider_service_1.ProviderService
             ]
-        }),
-        router_deprecated_1.RouteConfig([
-            {
-                // the router matches this route's path to the URL in the browser address bar
-                path: '/providers',
-                // the official name of the route; it must begin with a capital letter to avoid confusion
-                //  with the path
-                name: 'Providers',
-                // the component the router should create when navigating to this route
-                component: provider_service_1.ProviderService
-            }
-        ]), 
+        }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;

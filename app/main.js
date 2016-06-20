@@ -7,6 +7,8 @@
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 // This is our application root component.
 var app_component_1 = require('./app.component');
+var app_routes_1 = require('./app.routes');
 // This tells Angular to load the root component.
-platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent);
+platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [app_routes_1.APP_ROUTER_PROVIDERS])
+    .catch(function (err) { return console.error(err); });
 //# sourceMappingURL=main.js.map

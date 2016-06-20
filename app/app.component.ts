@@ -1,32 +1,28 @@
 import { Component } from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 import { ProviderService } from './provider.service';
-import { ProviderComponent } from './provider.component';
+//import { ProviderComponent } from './provider.component';
+//import { DashboardComponent } from './dashboard.component';
 
 @Component({
     selector: 'app',
     template: `
         <h1>{{title}}</h1>
-        <a [routerLink]="['Providers']">Providers</a>
+        <nav>
+            <a [routerLink]="['/dashboard']">Dashboard</a>
+            <a [routerLink]="['/dashboard2']">Dashboard 2</a>
+            <a [routerLink]="['/providers']">Providers</a>
+        </nav>
         <router-outlet></router-outlet>
     `,
-    directives: [ROUTER_DIRECTIVES],
+    directives: [
+        ROUTER_DIRECTIVES
+    ],
     providers: [
-        ROUTER_PROVIDERS,
         ProviderService
     ]
 })
-@RouteConfig([
-    {
-        // the router matches this route's path to the URL in the browser address bar
-        path: '/providers',
-        // the official name of the route; it must begin with a capital letter to avoid confusion
-        //  with the path
-        name: 'Providers',
-        // the component the router should create when navigating to this route
-        component: ProviderService
-    }
-])
+
 export class AppComponent {
     title = 'Provider Search';
 }
