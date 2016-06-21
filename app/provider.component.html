@@ -1,0 +1,14 @@
+<h2>Provider List</h2>
+<ul class="providers">
+    <li *ngFor="let provider of providers" 
+        [class.selected]="provider === selectedProvider"
+        (click)="onSelect(provider)">
+        <span class="badge">{{provider.id}}</span> {{provider.name}}
+    </li>
+</ul>
+<div *ngIf="selectedProvider">
+  <h2>
+    {{selectedProvider.name | uppercase}} is my provider
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>

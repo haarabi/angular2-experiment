@@ -19,4 +19,9 @@ export class ProviderService {
         setTimeout(() => resolve(PROVIDERS), 10000) // 2 seconds
         );
     }
+
+    getProvider(id: number) {
+        return this.getProviders()
+            .then(providers => providers.filter(provider => provider.id === id)[0]);
+    }
 }

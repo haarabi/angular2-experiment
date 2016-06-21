@@ -10,7 +10,6 @@ import { ProviderService } from './provider.service';
         <h1>{{title}}</h1>
         <nav>
             <a [routerLink]="['/dashboard']">Dashboard</a>
-            <a [routerLink]="['/dashboard2']">Dashboard 2</a>
             <a [routerLink]="['/providers']">Providers</a>
         </nav>
         <router-outlet></router-outlet>

@@ -16,13 +16,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // Best practice: to create component per purpose/functionality
 // Here we are importing the Component decorator function.
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var provider_service_1 = require('./provider.service');
 // "Decorator" telling Angular what template to use and how to create the component.
 // The @Component decorator function takes in a metadata object, that tells angular how to create
 //  and use this component.
 var ProviderComponent = (function () {
     // keep complex logic out of the constructor. Use cstr for simple initializations.
-    function ProviderComponent(providerService) {
+    function ProviderComponent(router, providerService) {
+        this.router = router;
         this.providerService = providerService;
     }
     // The arrow function (=>) is new in ES2015 used in callbacks.
@@ -41,6 +43,9 @@ var ProviderComponent = (function () {
     ProviderComponent.prototype.onSelect = function (provider) {
         this.selectedProvider = provider;
     };
+    ProviderComponent.prototype.gotoDetail = function () {
+        this.router.navigate(['ProviderDetail', { id: this.selectedProvider.id }]);
+    };
     ProviderComponent = __decorate([
         core_1.Component({
             // This specifies a simple CSS selector for an HTML element to represent the component
@@ -52,12 +57,12 @@ var ProviderComponent = (function () {
             // The (*) prefix to ngFor indicates that the <li> element and its children constitute a master
             //  template
             // ngFor and ngIf are "structural directives" because they can change the structure of DOM.
-            template: "\n        <h1>{{title}}</h1>\n        <h2>Provider List</h2>\n        <ul class=\"providers\">\n            <li *ngFor=\"let provider of providers\" \n                [class.selected]=\"provider === selectedProvider\"\n                (click)=\"onSelect(provider)\">\n                <span class=\"badge\">{{provider.id}}</span> {{provider.name}}\n            </li>\n        </ul>\n        <providerdetail [provider]=\"selectedProvider\"></providerdetail>\n    ",
+            template: "app/provider.component.html",
             // the style applied in the decorator is only specific to this component. The outer HTML is not
             //  affected.
-            styles: ["\n    .selected {\n        background-color: #CFD8DC !important;\n        color: white;\n    }\n    .providers {\n        margin: 0 0 2em 0;\n        list-style-type: none;\n        padding: 0;\n        width: 15em;\n    }\n    .providers li {\n        cursor: pointer;\n        position: relative;\n        left: 0;\n        background-color: #EEE;\n        margin: .5em;\n        padding: .3em 0;\n        height: 1.6em;\n        border-radius: 4px;\n    }\n    .providers li.selected:hover {\n        background-color: #BBD8DC !important;\n        color: white;\n    }\n    .providers li:hover {\n        color: #607D8B;\n        background-color: #DDD;\n        left: .1em;\n    }\n    .providers .text {\n        position: relative;\n        top: -3px;\n    }\n    .providers .badge {\n        display: inline-block;\n        font-size: small;\n        color: white;\n        padding: 0.8em 0.7em 0 0.7em;\n        background-color: #607D8B;\n        line-height: 1em;\n        position: relative;\n        left: -1px;\n        top: -4px;\n        height: 1.8em;\n        margin-right: .8em;\n        border-radius: 4px 0 0 4px;\n    }\n    "]
+            styles: ["app/provider.component.css"]
         }), 
-        __metadata('design:paramtypes', [provider_service_1.ProviderService])
+        __metadata('design:paramtypes', [router_1.Router, provider_service_1.ProviderService])
     ], ProviderComponent);
     return ProviderComponent;
 }());

@@ -6,6 +6,7 @@
 // Best practice: to create component per purpose/functionality
 // Here we are importing the Component decorator function.
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Provider } from './provider';
 import { ProviderService } from './provider.service';
 
@@ -22,69 +23,10 @@ import { ProviderService } from './provider.service';
     // The (*) prefix to ngFor indicates that the <li> element and its children constitute a master
     //  template
     // ngFor and ngIf are "structural directives" because they can change the structure of DOM.
-    template: `
-        <h1>{{title}}</h1>
-        <h2>Provider List</h2>
-        <ul class="providers">
-            <li *ngFor="let provider of providers" 
-                [class.selected]="provider === selectedProvider"
-                (click)="onSelect(provider)">
-                <span class="badge">{{provider.id}}</span> {{provider.name}}
-            </li>
-        </ul>
-        <providerdetail [provider]="selectedProvider"></providerdetail>
-    `,
+    template: `app/provider.component.html`,
     // the style applied in the decorator is only specific to this component. The outer HTML is not
     //  affected.
-    styles:[`
-    .selected {
-        background-color: #CFD8DC !important;
-        color: white;
-    }
-    .providers {
-        margin: 0 0 2em 0;
-        list-style-type: none;
-        padding: 0;
-        width: 15em;
-    }
-    .providers li {
-        cursor: pointer;
-        position: relative;
-        left: 0;
-        background-color: #EEE;
-        margin: .5em;
-        padding: .3em 0;
-        height: 1.6em;
-        border-radius: 4px;
-    }
-    .providers li.selected:hover {
-        background-color: #BBD8DC !important;
-        color: white;
-    }
-    .providers li:hover {
-        color: #607D8B;
-        background-color: #DDD;
-        left: .1em;
-    }
-    .providers .text {
-        position: relative;
-        top: -3px;
-    }
-    .providers .badge {
-        display: inline-block;
-        font-size: small;
-        color: white;
-        padding: 0.8em 0.7em 0 0.7em;
-        background-color: #607D8B;
-        line-height: 1em;
-        position: relative;
-        left: -1px;
-        top: -4px;
-        height: 1.8em;
-        margin-right: .8em;
-        border-radius: 4px 0 0 4px;
-    }
-    `]
+    styles:[`app/provider.component.css`]
 })
 
 // "Component class" controlling the appearance and behavior of view via its template. This is
@@ -95,7 +37,9 @@ export class ProviderComponent implements OnInit {
     selectedProvider: Provider;
     
     // keep complex logic out of the constructor. Use cstr for simple initializations.
-    constructor(private providerService: ProviderService) {
+    constructor(
+        private router: Router,
+        private providerService: ProviderService) {
 
     }
 
@@ -115,6 +59,10 @@ export class ProviderComponent implements OnInit {
 
     onSelect(provider: Provider) { 
         this.selectedProvider = provider; 
+    }
+
+    gotoDetail() {
+        this.router.navigate(['ProviderDetail', { id: this.selectedProvider.id }]);
     }
  }
 

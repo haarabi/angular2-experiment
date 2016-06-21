@@ -1,6 +1,6 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
-import { Dashboard2Component } from './dashboard2.component';
+import { ProviderDetailComponent } from './providerdetail.component';
 import { ProviderComponent } from './provider.component';
 
 // Route definitions
@@ -10,8 +10,8 @@ export const routes:
         component: DashboardComponent
     },
     { 
-        path: 'dashboard2',
-        component: Dashboard2Component
+        path: 'detail/:id',
+        component: ProviderDetailComponent
     },
     {
         path: 'providers', 

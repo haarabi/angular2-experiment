@@ -1,7 +1,7 @@
 "use strict";
 var router_1 = require('@angular/router');
 var dashboard_component_1 = require('./dashboard.component');
-var dashboard2_component_1 = require('./dashboard2.component');
+var providerdetail_component_1 = require('./providerdetail.component');
 var provider_component_1 = require('./provider.component');
 // Route definitions
 exports.routes = [{
@@ -9,8 +9,8 @@ exports.routes = [{
         component: dashboard_component_1.DashboardComponent
     },
     {
-        path: 'dashboard2',
-        component: dashboard2_component_1.Dashboard2Component
+        path: 'detail/:id',
+        component: providerdetail_component_1.ProviderDetailComponent
     },
     {
         path: 'providers',

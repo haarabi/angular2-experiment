@@ -29,6 +29,10 @@ var ProviderService = (function () {
          // 2 seconds
         );
     };
+    ProviderService.prototype.getProvider = function (id) {
+        return this.getProviders()
+            .then(function (providers) { return providers.filter(function (provider) { return provider.id === id; })[0]; });
+    };
     ProviderService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
