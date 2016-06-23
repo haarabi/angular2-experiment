@@ -60,7 +60,7 @@ var ProviderComponent = (function () {
             templateUrl: "../../app/provider.component.html",
             // the style applied in the decorator is only specific to this component. The outer HTML is not
             //  affected.
-            stylesUrls: ["../../app/provider.component.css"]
+            styleUrls: ["../../app/provider.component.css"]
         }), 
         __metadata('design:paramtypes', [router_1.Router, provider_service_1.ProviderService])
     ], ProviderComponent);

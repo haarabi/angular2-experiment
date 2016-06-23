@@ -26,7 +26,7 @@ import { ProviderService } from './provider.service';
     templateUrl: `../../app/provider.component.html`,
     // the style applied in the decorator is only specific to this component. The outer HTML is not
     //  affected.
-    stylesUrls:[`../../app/provider.component.css`]
+    styleUrls:[`../../app/provider.component.css`]
 })
 
 // "Component class" controlling the appearance and behavior of view via its template. This is
