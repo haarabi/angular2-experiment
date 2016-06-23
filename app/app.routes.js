@@ -9,7 +9,7 @@ exports.routes = [{
         component: dashboard_component_1.DashboardComponent
     },
     {
-        path: 'detail/:id',
+        path: 'providerdetail/:id',
         component: providerdetail_component_1.ProviderDetailComponent
     },
     {

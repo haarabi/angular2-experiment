@@ -15,7 +15,7 @@ import { ProviderService } from './provider.service';
 //  and use this component.
 @Component({
     // This specifies a simple CSS selector for an HTML element to represent the component
-    selector: 'provider',
+    selector: 'providers',
     // This tells Angular how to render this component. 
     // double curly braces {{}} is called "interpolation" - this is one-way binding
     // ngModel is a build directive that allows two-way binding. It also propagates changes to
@@ -23,10 +23,10 @@ import { ProviderService } from './provider.service';
     // The (*) prefix to ngFor indicates that the <li> element and its children constitute a master
     //  template
     // ngFor and ngIf are "structural directives" because they can change the structure of DOM.
-    template: `app/provider.component.html`,
+    templateUrl: `../../app/provider.component.html`,
     // the style applied in the decorator is only specific to this component. The outer HTML is not
     //  affected.
-    styles:[`app/provider.component.css`]
+    stylesUrls:[`../../app/provider.component.css`]
 })
 
 // "Component class" controlling the appearance and behavior of view via its template. This is

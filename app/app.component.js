@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var provider_service_1 = require('./provider.service');
-//import { ProviderComponent } from './provider.component';
-//import { DashboardComponent } from './dashboard.component';
+// import { ProviderComponent } from './provider.component';
+// import { DashboardComponent } from './dashboard.component';
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Provider Search';

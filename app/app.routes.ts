@@ -10,7 +10,7 @@ export const routes:
         component: DashboardComponent
     },
     { 
-        path: 'detail/:id',
+        path: 'providerdetail/:id',
         component: ProviderDetailComponent
     },
     {

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import { ProviderService } from './provider.service';
-//import { ProviderComponent } from './provider.component';
-//import { DashboardComponent } from './dashboard.component';
+// import { ProviderComponent } from './provider.component';
+// import { DashboardComponent } from './dashboard.component';
 
 @Component({
     selector: 'app',

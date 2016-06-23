@@ -6,8 +6,8 @@ import { ProviderService } from './provider.service';
 
 @Component({
     selector: 'dashboard',
-    template: 'app/dashboard.component.html',
-    styleUrls: ['app/dashboard.component.css']
+    templateUrl: `../../app/dashboard.component.html`,
+    styleUrls: [`../../app/dashboard.component.css`]
 })
 export class DashboardComponent implements OnInit {
     providers: Provider[] = [];
