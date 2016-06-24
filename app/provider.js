@@ -1,8 +1,5 @@
 "use strict";
-var Provider = (function () {
-    function Provider() {
-    }
-    return Provider;
-}());
+class Provider {
+}
 exports.Provider = Provider;
 //# sourceMappingURL=provider.js.map

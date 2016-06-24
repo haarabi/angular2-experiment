@@ -1,8 +1,8 @@
 "use strict";
-var router_1 = require('@angular/router');
-var dashboard_component_1 = require('./dashboard.component');
-var providerdetail_component_1 = require('./providerdetail.component');
-var provider_component_1 = require('./provider.component');
+const router_1 = require('@angular/router');
+const dashboard_component_1 = require('./dashboard.component');
+const providerdetail_component_1 = require('./providerdetail.component');
+const provider_component_1 = require('./provider.component');
 // Route definitions
 exports.routes = [{
         path: 'dashboard',

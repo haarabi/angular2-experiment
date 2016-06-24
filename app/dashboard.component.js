@@ -8,34 +8,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var provider_service_1 = require('./provider.service');
-var DashboardComponent = (function () {
-    function DashboardComponent(router, providerService) {
+const core_1 = require('@angular/core');
+const router_1 = require('@angular/router');
+const provider_service_1 = require('./provider.service');
+let DashboardComponent = class DashboardComponent {
+    constructor(router, providerService) {
         this.router = router;
         this.providerService = providerService;
         this.providers = [];
     }
-    DashboardComponent.prototype.ngOnInit = function () {
-        var _this = this;
+    ngOnInit() {
         this.providerService
             .getProviders()
-            .then(function (providers) { return _this.providers = providers.slice(1, 5); });
-    };
-    DashboardComponent.prototype.gotoDetail = function (provider) {
-        var link = ['ProviderDetail', { id: provider.id }];
+            .then(providers => this.providers = providers.slice(1, 5));
+    }
+    gotoDetail(provider) {
+        let link = ['ProviderDetail', { id: provider.id }];
         this.router.navigate(link);
-    };
-    DashboardComponent = __decorate([
-        core_1.Component({
-            selector: 'dashboard',
-            templateUrl: "../../app/dashboard.component.html",
-            styleUrls: ["../../app/dashboard.component.css"]
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, provider_service_1.ProviderService])
-    ], DashboardComponent);
-    return DashboardComponent;
-}());
+    }
+};
+DashboardComponent = __decorate([
+    core_1.Component({
+        selector: 'dashboard',
+        templateUrl: `../../app/dashboard.component.html`,
+        styleUrls: [`../../app/dashboard.component.css`]
+    }), 
+    __metadata('design:paramtypes', [router_1.Router, provider_service_1.ProviderService])
+], DashboardComponent);
 exports.DashboardComponent = DashboardComponent;
 //# sourceMappingURL=dashboard.component.js.map

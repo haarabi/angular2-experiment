@@ -10,23 +10,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // The provider property is an input, the ProviderDetailComponent must be told from the parent
 //  component (AppComponent) which Provider to display 
-var core_1 = require('@angular/core');
-var provider_1 = require('./provider');
-var ProviderDetailComponent = (function () {
-    function ProviderDetailComponent() {
-    }
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', provider_1.Provider)
-    ], ProviderDetailComponent.prototype, "provider", void 0);
-    ProviderDetailComponent = __decorate([
-        core_1.Component({
-            selector: 'providerdetail',
-            template: "\n        <div *ngIf=\"provider\">\n            <h2>{{provider.name}} details!</h2>\n            <div><label>id: </label>{{provider.id}}</div>\n            <div>\n                <label>name: </label>\n                <input [(ngModel)]=\"provider.name\" placeholder=\"name\"/>\n            </div>\n        </div>\n    "
-        }), 
-        __metadata('design:paramtypes', [])
-    ], ProviderDetailComponent);
-    return ProviderDetailComponent;
-}());
+const core_1 = require('@angular/core');
+const provider_1 = require('./provider');
+let ProviderDetailComponent = class ProviderDetailComponent {
+};
+__decorate([
+    core_1.Input(), 
+    __metadata('design:type', provider_1.Provider)
+], ProviderDetailComponent.prototype, "provider", void 0);
+ProviderDetailComponent = __decorate([
+    core_1.Component({
+        selector: 'providerdetail',
+        template: `
+        <div *ngIf="provider">
+            <h2>{{provider.name}} details!</h2>
+            <div><label>id: </label>{{provider.id}}</div>
+            <div>
+                <label>name: </label>
+                <input [(ngModel)]="provider.name" placeholder="name"/>
+            </div>
+        </div>
+    `
+    }), 
+    __metadata('design:paramtypes', [])
+], ProviderDetailComponent);
 exports.ProviderDetailComponent = ProviderDetailComponent;
 //# sourceMappingURL=providerdetail.component.js.map

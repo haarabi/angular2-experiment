@@ -15,57 +15,55 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // The component file hosts the client UX
 // Best practice: to create component per purpose/functionality
 // Here we are importing the Component decorator function.
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var provider_service_1 = require('./provider.service');
+const core_1 = require('@angular/core');
+const router_1 = require('@angular/router');
+const provider_service_1 = require('./provider.service');
 // "Decorator" telling Angular what template to use and how to create the component.
 // The @Component decorator function takes in a metadata object, that tells angular how to create
 //  and use this component.
-var ProviderComponent = (function () {
+let ProviderComponent = class ProviderComponent {
     // keep complex logic out of the constructor. Use cstr for simple initializations.
-    function ProviderComponent(router, providerService) {
+    constructor(router, providerService) {
         this.router = router;
         this.providerService = providerService;
     }
     // The arrow function (=>) is new in ES2015 used in callbacks.
     // The callback below sets the component's providers property to the array of providers
     //  returned by the service.
-    ProviderComponent.prototype.getProviders = function () {
-        var _this = this;
+    getProviders() {
         this.providerService
             .getProviders()
-            .then(function (providers) { return _this.providers = providers; });
-    };
+            .then(providers => this.providers = providers);
+    }
     // Angular Lifecycle Hooks used to get providers
-    ProviderComponent.prototype.ngOnInit = function () {
+    ngOnInit() {
         this.getProviders();
-    };
-    ProviderComponent.prototype.onSelect = function (provider) {
+    }
+    onSelect(provider) {
         this.selectedProvider = provider;
-    };
-    ProviderComponent.prototype.gotoDetail = function () {
+    }
+    gotoDetail() {
         this.router.navigate(['ProviderDetail', { id: this.selectedProvider.id }]);
-    };
-    ProviderComponent = __decorate([
-        core_1.Component({
-            // This specifies a simple CSS selector for an HTML element to represent the component
-            selector: 'providers',
-            // This tells Angular how to render this component. 
-            // double curly braces {{}} is called "interpolation" - this is one-way binding
-            // ngModel is a build directive that allows two-way binding. It also propagates changes to
-            //  every other binding of the provider.name.
-            // The (*) prefix to ngFor indicates that the <li> element and its children constitute a master
-            //  template
-            // ngFor and ngIf are "structural directives" because they can change the structure of DOM.
-            templateUrl: "../../app/provider.component.html",
-            // the style applied in the decorator is only specific to this component. The outer HTML is not
-            //  affected.
-            styleUrls: ["../../app/provider.component.css"]
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, provider_service_1.ProviderService])
-    ], ProviderComponent);
-    return ProviderComponent;
-}());
+    }
+};
+ProviderComponent = __decorate([
+    core_1.Component({
+        // This specifies a simple CSS selector for an HTML element to represent the component
+        selector: 'providers',
+        // This tells Angular how to render this component. 
+        // double curly braces {{}} is called "interpolation" - this is one-way binding
+        // ngModel is a build directive that allows two-way binding. It also propagates changes to
+        //  every other binding of the provider.name.
+        // The (*) prefix to ngFor indicates that the <li> element and its children constitute a master
+        //  template
+        // ngFor and ngIf are "structural directives" because they can change the structure of DOM.
+        templateUrl: `../../app/provider.component.html`,
+        // the style applied in the decorator is only specific to this component. The outer HTML is not
+        //  affected.
+        styleUrls: [`../../app/provider.component.css`]
+    }), 
+    __metadata('design:paramtypes', [router_1.Router, provider_service_1.ProviderService])
+], ProviderComponent);
 exports.ProviderComponent = ProviderComponent;
 /*
 Note:

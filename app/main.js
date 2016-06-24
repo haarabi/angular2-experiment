@@ -4,11 +4,11 @@
 //  NativeScript. We might wish to render the first page of our application on the server to  
 //  improve launch performance or facilitate SEO. These targets require a different kind of 
 //  bootstrap function that we'd import from a different library.
-var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
+const platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 // This is our application root component.
-var app_component_1 = require('./app.component');
-var app_routes_1 = require('./app.routes');
+const app_component_1 = require('./app.component');
+const app_routes_1 = require('./app.routes');
 // This tells Angular to load the root component.
 platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [app_routes_1.APP_ROUTER_PROVIDERS])
-    .catch(function (err) { return console.error(err); });
+    .catch(err => console.error(err));
 //# sourceMappingURL=main.js.map
