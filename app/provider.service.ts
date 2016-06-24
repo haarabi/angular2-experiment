@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 import { Provider } from './provider';
-import { PROVIDERS } from './mockproviders';
+//import { PROVIDERS } from './mockproviders';
+
 
 // TS see the Injectable decorator and emits metadata about our service, metadata that Angular may
 //  need to inject other dependencies into this service.
@@ -8,17 +11,30 @@ import { PROVIDERS } from './mockproviders';
 //  decorator for consistency and future-proofing.
 @Injectable()
 export class ProviderService {
-    getProviders(){
+    private providersUrl = 'app/providers';  // URL to web api
+    constructor(private http: Http) { }
+
+    getProviders(): Promise<Provider[]> {
         // Using promises so that we can ask for the data asynchronously.
-        return Promise.resolve(PROVIDERS);
+        // We are now using RxJS observable. Which allows managing asynchronous data flows.
+        return this.http.get(this.providersUrl)
+                   .toPromise()
+                   .then(response => response.json().data)
+                   .catch(this.handleError);                
     }
 
-    // Experimenting with getting data on a slow connection
-    getProvidersSlowly() {
-        return new Promise<Provider[]>(resolve =>
-        setTimeout(() => resolve(PROVIDERS), 10000) // 2 seconds
-        );
+    private handleError(error: any) {
+        console.error('An error occurred', error);
+        return Promise.reject(error.message || error);
     }
+
+
+    // // Experimenting with getting data on a slow connection
+    // getProvidersSlowly() {
+    //     return new Promise<Provider[]>(resolve =>
+    //     setTimeout(() => resolve(PROVIDERS), 10000) // 2 seconds
+    //     );
+    // }
 
     getProvider(id: number) {
         return this.getProviders()
