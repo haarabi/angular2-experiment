@@ -1,5 +1,5 @@
 {
-  "name": "synermed-home",
+  "name": "angular2-experiment",
   "version": "1.0.0-beta",
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
